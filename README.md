@@ -104,7 +104,7 @@ plt.legend()
 plt.grid(True)
 plt.show()
  ``` </pre>
-
+![Ejemplo de gráfico2](/images/hss_30_days.png)
  usamos rollin,  rolling() se usa para calcular estadísticas móviles o "deslizantes" sobre una serie de tiempo o columna de un DataFrame en pandas. Es súper útil cuando trabajas con datos financieros, meteorológicos, sensores o cualquier dato secuencial donde te interesa analizar la tendencia a lo largo del tiempo suavizando el ruido.
 - df["Close"] → Toma la columna de precios de cierre.
 
@@ -128,6 +128,8 @@ Usaremos seasonal_decompose() Descompone tu serie en 4 partes:
 - Ruido (Residual o Residuals) → Todo lo que no es tendencia ni estacionalidad. Es el "caos", el error, lo inesperado.
 
 - Observado (Observed) → Tu serie original.
+
+![Ejemplo de gráfico3](/images/hs_descomposicion.png)
 
 Visualizamos que se presenta se observa que hay un conjunto de 1 a 3 años donde los precios presentan un ciclo repetitivo, sin embargo el crecimiento del precio se ve aumentando y disminuyendo quizas adaptandose a la economia actual
 
@@ -217,7 +219,7 @@ df['diff_2']=df[' Close/Last'].diff().diff()
 
 Asi se verian los datos 
 veremos cómo se comparan los precios reales con las lag feauteres y rolling stats, para ver si aportan valor
-
+![Ejemplo de gráfico4](/images/lagvisudalizacion.png)
 
 4. **Model Development**  
 
@@ -320,6 +322,8 @@ Al comparar ambos modelos, ARIMA mostró una tendencia a aplanarse con el tiempo
 Por otro lado, SARIMA logró mantener un patrón similar al comportamiento real, especialmente en las fluctuaciones de corto plazo, lo cual sugiere la presencia de estacionalidad en los precios de cierre de Apple.
 
 Aunque los errores (MAE y RMSE) pueden ser similares en magnitud, SARIMA es claramente superior visualmente, ya que refleja de forma más fiel los movimientos reales del precio, sin aplanarse.
+
+![Ejemplo de gráfico6](/images/sarimavsarima.png)
 
 6. **Hyperparameter Tuning**  
    - Optimización con `auto_arima` para mejorar rendimiento
