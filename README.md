@@ -85,7 +85,7 @@ Visualizamos la tendencias del precio a travez del tiempo mediante una grafica, 
 **Nota: en esta parte del EDA visualizmaos algunos picos que estan fuera del rango, esto queire decir que hay valores atipicos, por lo que se hara limpieza ya 
 viendo la grafica son datos inecesarios.**
 
-![Ejemplo de gráfico](stock-price-prediction/images/eda.jpg)
+![Ejemplo de gráfico](/images/eda.jpg)
 
 En los datos se puede observar que hay una tendencia de subida y bajada en el cierre, existen picos anormales de subidas y caudas drasticas, se analiza siempre que cuando hay una subida de precio le sigue un pico en bajada
 
