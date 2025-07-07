@@ -91,7 +91,7 @@ En los datos se puede observar que hay una tendencia de subida y bajada en el ci
 
 Este mismo parece estable en cierto rango de tiempo pero no es del todo exacto.
 
-###Visualización con media móvil(Tendencia suavizada)
+### Visualización con media móvil(Tendencia suavizada)
  Esto te ayuda a ver mejor la tendencia a largo plazo.
 <pre> ```
 df["rolling_mean_30"] = df["Close"].rolling(window=30).mean()
@@ -131,7 +131,7 @@ Usaremos seasonal_decompose() Descompone tu serie en 4 partes:
 
 Visualizamos que se presenta se observa que hay un conjunto de 1 a 3 años donde los precios presentan un ciclo repetitivo, sin embargo el crecimiento del precio se ve aumentando y disminuyendo quizas adaptandose a la economia actual
 
-###Verificar estacionariedad 
+### Verificar estacionariedad 
 Esto funciona para saber si nuestras series de tiempo son estacionarias o no, quiere decir que si son lineales o ciclicas.
 
 <pre> ```
@@ -145,7 +145,7 @@ Si el p-value < 0.05, la serie ya es estacionaria.
 Si es mayor, necesitarás aplicar differencing antes de modelar.
 
 Sin embargo los resultados fueron los siguientes
-###🧪 Resultado del Test de Dickey-Fuller (ADF)
+### 🧪 Resultado del Test de Dickey-Fuller (ADF)
 - ADF Statistic: -7.93
 - p-value: 0.0000
 
@@ -183,13 +183,13 @@ Es el proceso de:
 - Crear lags o promedios moviles
 - Codificar variables categoricas
 
-####A. Lag Features (Caracteristicas rezagadas)
+#### A. Lag Features (Caracteristicas rezagadas)
 Esta simulara el recuerdo de la serie. Por ejemplo: ¿Cómo estaba el precio ayer? ¿Hace 7 dias?
 
-####B.Rolling Statistics(Promedios moviles)
+#### B.Rolling Statistics(Promedios moviles)
 Muestra el comportamiento local de la serie. Son super utiles para suaviar y ver microtendencias
 
-####C. Differencing
+#### C. Differencing
 .diff() calcula la diferencia entre un valor y el valor anterior en una columno elimina tendencia para modelos, esta vez solo se hara para si en todo caso no fuera estacionario. (solo es demostraivo)
 
 <pre> ```
@@ -232,7 +232,7 @@ Queremos saber si el modelo puede predecir datos que no ha visto Usualmente se d
 
 <pre> ```
 
-#En este caso para Arima no se usara sklearning por lo que se hara manual
+### En este caso para Arima no se usara sklearning por lo que se hara manual
 train_size=int(len(df)*0.95)
 train=df[' Close/Last'][:train_size]
 test=df[' Close/Last'][train_size:]
@@ -242,7 +242,7 @@ print('prueba', len(test))
 
 ``` </pre>
 
-###Modelo ARIMA
+### Modelo ARIMA
 
 Arima es un modelo estadistico(no machine learning) que se usa para predecir series temporales tiene tres componentes:
 
@@ -263,18 +263,18 @@ Tenemos encuenta que nuestra serie es estacuinaria, asi que usaremos d=0
 <pre> ```
 
 from statsmodels.tsa.arima.model import ARIMA
-#Entrenar el modelo ARIMA
+# Entrenar el modelo ARIMA
 model=ARIMA(train, order=(5,0,2))#p=5 considera los ulgimos 5 valores para predecir el siguuente
 #d=0 ya no aplica porque ya es estacionario
 #q=2 usa los errores de prediccion de los ultimos 2 dias para mejorar
 model_fit=model.fit() #Se entreja el modelo con los datos de entrenamiento
 
-#Genera predicciones para el periodo de prueva
+# Genera predicciones para el periodo de prueva
 forecast = model_fit.forecast(steps=len(test)) #Genera las predicciones para el mismo numero de dias que hay en test
 
 ``` </pre>
 
-####Modelo SARIMA
+#### Modelo SARIMA
 Es ARIMA + Estacionalidad(por si hay patrones que se repiten cada X dias)
 Lo mismo que p,d,q pero para ciclos repetidos
 s= numero de pasos que dura un ciclo
@@ -298,7 +298,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 model_sarima = SARIMAX(train, order=(5, 0, 2), seasonal_order=(1, 1, 1, 30))
 model_sarima_fit = model_sarima.fit()
 
-#Predecir
+# Predecir
 sarima_forecast=model_sarima_fit.forecast(steps=len(test))
 
 ``` </pre>
@@ -308,7 +308,7 @@ sarima_forecast=model_sarima_fit.forecast(steps=len(test))
    - Visualización comparativa: valores reales vs predicciones
 
 
-###Estas sonn las metricas de ARIMA Y SARIMA
+### Estas sonn las metricas de ARIMA Y SARIMA
 MAE ARIMA: 34.36638788719395
 RMSE ARIMA: 43.19513401116803
 
