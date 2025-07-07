@@ -373,10 +373,7 @@ Este proyecto no solo cumplió con el objetivo de predecir precios futuros, sino
 SARIMA no solo predice, sino que "entiende" la lógica estacional del mercado, lo cual es clave al trabajar con activos financieros como acciones.
 
 📬 Autor
-Daxel Valenzuela
-
+Daxel Valenciano
 Analista de Datos | Ingeniero Mecánico | Fundador de Moops
 
-Instagram
-
-LinkedIn (agrega el tuyo si quieres)
+LinkedIn [(linkedIn)](https://www.linkedin.com/in/daxel-valenciano-420321201)
